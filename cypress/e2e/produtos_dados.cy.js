@@ -1,9 +1,10 @@
 /// <reference types = 'cypress'/>
+import produtosPage from "../support/page_objects/produtos.page";
 
 describe('Teste de Arquivos de Dados', () => {
 
     beforeEach(() => {
-        cy.visit('produtos')
+        produtosPage.visitarUrl()
     });
     
     it('Deve entrar em produtos via dados', () => {
@@ -15,5 +16,17 @@ describe('Teste de Arquivos de Dados', () => {
         cy.get('.single_add_to_cart_button').click()
         cy.get('.woocommerce-message').should('contain', 'adicionados no seu carrinho')
     });
+
+    it('Deve buscar um produto com sucesso', () => {
+        produtosPage.buscarProduto('Aero Daily Fitness Tee')
+        cy.get('.product_title').should('contain', 'Aero Daily Fitness Tee')
+        
+    });
+
+    it('Deve visitar a página do produto', () => {
+        
+    });
+
+    it
     
 });
